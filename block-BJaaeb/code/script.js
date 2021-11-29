@@ -34,15 +34,22 @@ createInputElm("Your age", "number"); //<label>Your age: <input type="number"></
 // the html for the link like <ul> <li>Mango</li>  <li>Apple</li>  <li>Banana</li> </ul>
 // Your code goes here
 
-function createList(array) {
-  let ul = document.createElement("ul");
-  array.forEach((elm) => {
-    let li = document.createElement("li");
-    li.innerText = `${elm}`;
-    ul.append(li);
-  });
-  return ul;
-}
+// function createList(array) {
+//   let ul = document.createElement("ul");
+//   array.forEach((elm) => {
+//     let li = document.createElement("li");
+//     li.innerText = `${elm}`;
+//     ul.append(li);
+//   });
+//   return ul;
+// }
+
+// function createList(data = []) {
+//   let html = `<ul>
+//     ${data.map((elm) => `<li>${elm}</li>`).joim("")}
+//   </ul>`;
+//   return html;
+// }
 
 // TEST
 createList(["ALABAMA", "ALASKA", "HAWAII", "KENTUCKY"]);
@@ -62,15 +69,28 @@ createList(["Afghanistan", "Antarctica", "Congo", "Estonia"]);
 
 // Your code goes here
 
-function createTodoList(name, isDone) {
-  let ul = document.querySelector("ul");
+function createTodoList(data = []) {
+  let html = `<ul>
+  ${data
+    .map(
+      (todo) => `
+  <li>
+    <p>${todo.name}</p>
+    <input type="checkbox" ${todo.isDone ? "checked" : ""} name="" id="">
+    <span>X</span>
+  </li>
+`
+    )
+    .join("")}
+</ul>`;
+  return html;
 }
 
 // TEST
-// createTodoList([
-//   { name: "Learn DOM", isDone: false },
-//   { name: "Learn JS", isDone: true },
-// ]);
+createTodoList([
+  { name: "Learn DOM", isDone: false },
+  { name: "Learn JS", isDone: true },
+]);
 // createTodoList([
 //   { name: "Learn DOM", isDone: false },
 //   { name: "Learn React", isDone: true },
