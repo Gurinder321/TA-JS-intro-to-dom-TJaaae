@@ -316,15 +316,28 @@ let got = {
     },
   ],
 };
-let rootUl = document.querySelector("ul");
 
-got.houses.forEach((elm) => {
-  let li = document.createElement("li");
-  let img = document.createElement("img");
-  img.src = elm.people.image;
-  let h2 = document.createElement("h2");
-  let p = document.createElement("p");
-  let button = document.createElement("button");
+let parentElement = document.querySelector("ul");
 
-  li.append(img, h2, p, button);
+let allPeople = got.houses.reduce((acc, cv) => {
+  acc = acc.concat(cv.people);
+  return acc;
+}, []);
+
+let cardsHTML = allPeople.map((person) => {
+  return `<li>
+      <img
+        src=${person.image}
+        alt=${person.name}
+      />
+      <h2>${person.name}</h2>
+      <p>
+        ${person.description}
+      </p>
+      <a href=${person.wikiLink}>Learn More</a>
+    </li>`;
 });
+
+parentElement.innerHTML = cardsHTML.join("");
+console.log(cardsHTML);
+console.log(allPeople);
